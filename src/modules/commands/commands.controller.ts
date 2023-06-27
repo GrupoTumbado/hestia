@@ -3,7 +3,6 @@ import { HelpCommandService } from "./help/help-command.service";
 import { Context, Options, SlashCommand, AutocompleteInterceptor, createCommandGroupDecorator, Subcommand } from "necord";
 import { AutocompleteInteraction, ButtonStyle, CommandInteraction } from "discord.js";
 import { JokeCommandService } from "./joke/joke-command.service";
-import { JokeCommandDto } from "./joke/dto/joke-command.dto";
 import { MotivationalPhraseCommandService } from "./motivational-phrase/motivational-phrase-command.service";
 import { MotivationalPhraseCommandDto } from "./motivational-phrase/dto/motivational-phrase-command.dto";
 
@@ -27,18 +26,15 @@ export class CommandsController {
         name: "chiste",
         description: "Obtén un chiste al azar",
     })
-    public async getJoke(@Context() [interaction]: [CommandInteraction], @Options() options: JokeCommandDto): Promise<JokeCommandService> {
-        return this.jokeCommandService;
+    public async getJoke(@Context() [interaction]: [CommandInteraction]) {
+        return this.jokeCommandService.getJoke(interaction);
     }
 
     @SlashCommand({
         name: "frase",
         description: "Obtén o envía una frase motivacional",
     })
-    public async getMotivationalPhrase(
-        @Context() [interaction]: [CommandInteraction],
-        @Options() options: MotivationalPhraseCommandDto,
-    ): Promise<MotivationalPhraseCommandService> {
-        return this.motivationalPhraseCommandService;
+    public async getMotivationalPhrase(@Context() [interaction]: [CommandInteraction], @Options() options: MotivationalPhraseCommandDto) {
+        return this.motivationalPhraseCommandService.getMotivationalPhrase(interaction, options);
     }
 }
