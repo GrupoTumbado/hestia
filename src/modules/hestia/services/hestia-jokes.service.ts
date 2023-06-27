@@ -15,10 +15,10 @@ export class HestiaJokesService {
     }
 
     findOneRandom(): Promise<Joke> {
-        return this.jokeRepository.createQueryBuilder().orderBy("RANDOM()").limit(1).getOne();
+        return this.jokeRepository.createQueryBuilder().orderBy("RAND()").limit(1).getOne();
     }
 
     findOneRandomByCategory(category: string): Promise<Joke> {
-        return this.jokeRepository.createQueryBuilder().where({ category }).orderBy("RANDOM()").limit(1).getOne();
+        return this.jokeRepository.createQueryBuilder().where({ category }).orderBy("RAND()").limit(1).getOne();
     }
 }

@@ -15,10 +15,10 @@ export class HestiaMotivationalPhrasesService {
     }
 
     findOneRandom(): Promise<MotivationalPhrase> {
-        return this.motivationalPhraseRepository.createQueryBuilder().orderBy("RANDOM()").limit(1).getOne();
+        return this.motivationalPhraseRepository.createQueryBuilder().orderBy("RAND()").limit(1).getOne();
     }
 
     findOneRandomByCategory(category: string): Promise<MotivationalPhrase> {
-        return this.motivationalPhraseRepository.createQueryBuilder().where({ category }).orderBy("RANDOM()").limit(1).getOne();
+        return this.motivationalPhraseRepository.createQueryBuilder().where({ category }).orderBy("RAND()").limit(1).getOne();
     }
 }
