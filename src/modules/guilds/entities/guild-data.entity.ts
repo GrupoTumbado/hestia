@@ -15,9 +15,6 @@ export class GuildData {
     members: number;
 
     @Column()
-    kill_feed_channel: string;
-
-    @Column()
     created_at: string;
 
     @Column()
